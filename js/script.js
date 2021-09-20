@@ -1,5 +1,7 @@
 'use strict';
+
 window.onload = function () {
+  // modal
   $('.--close').click(function () { 
     $('.modal').stop().fadeOut();
   });
@@ -22,6 +24,8 @@ window.onload = function () {
       prevEl: '.controll-prev',
     }
   });
+
+  // swiper
   $('.swp-v').mouseenter(function () {
     swp_v.autoplay.stop();
   });
@@ -44,37 +48,35 @@ window.onload = function () {
   var menu_support = $('#support');
   var dpeth2_support = $('.--support');
   
-
-
   menu_about.mouseenter(function () {
     dpeth2_about.stop().fadeIn();
   });
   menu_about.mouseleave(function () {
-    depth2_timer = setTimeout(depth2Out, 100);
-    console.log(depth2_timer);
+    depth2_timer = setTimeout(depth2Out, 50);
+    console.log("about"+depth2_timer);
   });
 
   menu_product.mouseenter(function () {
     dpeth2_product.stop().fadeIn();
   });
   menu_product.mouseleave(function () {
-    depth2_timer = setTimeout(depth2Out, 100);
-    console.log(depth2_timer);
+    depth2_timer = setTimeout(depth2Out, 50);
+    console.log("product"+depth2_timer);
   });
 
   menu_support.mouseenter(function () {
     dpeth2_support.stop().fadeIn();
   });
   menu_support.mouseleave(function () {
-    depth2_timer = setTimeout(depth2Out, 100);
-    console.log(depth2_timer);
+    depth2_timer = setTimeout(depth2Out, 50);
+    console.log("support"+depth2_timer);
   });
-
 
   depth2.mouseenter(function () {
     clearTimeout(depth2_timer);
   });
   depth2.mouseleave(function () {
+    clearTimeout(depth2_timer);
     depth2Out();
   });
 

@@ -2,10 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&family=Roboto:wght@100;300;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@800&family=Nanum+Gothic+Coding&display=swap');
 
-/* todo */
-/* 1 reponsive */
-/* 2 header button focusing */
-
 html {
   scrollbar-3dlight-color: #efefef;
   scrollbar-arrow-color: #dfdfdf;
@@ -1014,7 +1010,7 @@ address ul li{
   }
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (max-width: 1240px){
   /* header */
   .tool__tls{
     width: 30rem;
