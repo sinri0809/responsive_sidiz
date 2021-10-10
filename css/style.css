@@ -2,20 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&family=Roboto:wght@100;300;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@800&family=Nanum+Gothic+Coding&display=swap');
 
-html {
-  scrollbar-3dlight-color: #efefef;
-  scrollbar-arrow-color: #dfdfdf;
-  scrollbar-base-color: #efefef;
-  scrollbar-face-color: #dfdfdf;
-  scrollbar-track-color: #efefef;
-  scrollbar-darkshadow-color: #efefef;
-  scrollbar-highlight-color: #efefef;
-  scrollbar-shadow-color: #efefef;
-  -ms-overflow-style: none;
-  overflow: auto;
-}
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
   height: 0;
 }
 /* ------------------------- */
@@ -78,7 +66,7 @@ input{
   height: 230px;
   background: linear-gradient(210deg, rgba(255, 212, 212, .8), rgba(238, 219, 255, .8) 70%),
               linear-gradient(0deg, rgba(236, 170, 85, .5), rgba(255, 255, 255, .2) 50%);
-  box-shadow: 3px 10px 0px 3px rgba(0, 0, 0, .3);
+  box-shadow: 10px 10px 0px 3px rgba(0, 0, 0, .3);
 }
 .modal-box .__top{
   display: flex;
@@ -108,7 +96,6 @@ input{
   letter-spacing: 1px;
   color: rgba(255, 230, 0, 1);
   text-shadow: 3px 0px  rgba(236, 170, 83, 1);
-
   animation: light_m 1s infinite;
   overflow: hidden;
 }
@@ -213,7 +200,7 @@ input{
   box-shadow: 1.5px 1.5px 0 1.5px rgba(0, 0, 0, .8);
   transition: all .3s;
 }
-
+/* modal responsive */
 @media screen and (max-width: 680px){
   .modal-box{
     width: 90vw;
@@ -328,10 +315,10 @@ input{
 .header__tool .__container-a{
   display: flex;
   justify-content: flex-end;
-  height: 40px;
+  height: 4rem;
 }
 .tool__search{
-  width: 340px;
+  width: 34rem;
   height: 100%;
   padding: 0 1em;
   border-left: 1px solid rgba(0, 0, 0, .2);
@@ -373,8 +360,8 @@ input{
 }
 .tool__tls li > a > span{
   display: inline-block;
-  width: 20px;
-  height: 30px;
+  width: 2rem;
+  height: 3rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 70%;
@@ -445,6 +432,18 @@ nav{
 
   color: white;
   background: rgba(0, 0, 0, .8);
+}
+.--disappear{
+  animation-name: disappear;
+  animation-duration: 1s;
+}
+@keyframes disappear {
+  from{
+    opacity: 1;
+  }to{
+    opacity: 0;
+  }
+  
 }
 .--support{
   width: 280%;
@@ -519,6 +518,7 @@ nav{
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: -2px;
+  word-break: keep-all;
 }
 .visual-cont em{
   display: block;
@@ -594,7 +594,6 @@ nav{
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-
   cursor: pointer;
 }
 .controll-prev{
@@ -679,8 +678,11 @@ article{
   justify-content: space-between;
   padding-top: 2rem;
 }
+.__kids-chairs-lst > li > a{
+  display: block;
+}
 .__kids-chairs-lst li a img{
-  width: 340px;
+  width: 34rem;
 }
 .__kids-chairs-lst li a:hover img{
   filter: brightness(115%) contrast(95%);
@@ -738,7 +740,6 @@ article{
   height: 50%;
   transform: scaleX(0);
   transform-origin: left;
-  
   background: rgba(0, 43, 210, .2);
 }
 .news-cont:hover::after{
@@ -764,7 +765,7 @@ article{
 }
 .insta__top-button{
   display: inline-block;
-  width: 25%;
+  /* width: 25%; */
   height: 100%;
 }
 .insta__top-button img{
@@ -782,6 +783,10 @@ article{
   justify-content: space-between;
   width: 100%;
   height: 23rem;
+  overflow: scroll;
+}
+.insta__lst li a{
+  display: block;
 }
 .insta__lst img{
   height: 230px;
@@ -981,13 +986,8 @@ address ul li{
   color: rgba(255, 255, 255, .4);
 }
 
-/* not yet */
 /* responsive */
 @media screen and (max-width: 1780px){
-  /* remote */
-  .remote{
-    display: none;
-  }
   /* common */
   .__container-a{
     width: 90vw;
@@ -1008,9 +1008,20 @@ address ul li{
     position: absolute;
     left: 0;
   }
+  .visual-cont h3{
+    width: 42rem;
+  }
+  
 }
 
 @media screen and (max-width: 1240px){
+  /* remote */
+  .remote{
+    display: none;
+  }
+  .__container{
+    width: 95vw;
+  }
   /* header */
   .tool__tls{
     width: 30rem;
@@ -1035,8 +1046,68 @@ address ul li{
   .visual-cont{
     position: relative;
     left: 0;
-    width: 30vw;
+    /* width: 30vw; */
     padding-top: 1em;
   }
+  /* task chair */
+  .__task-chairs-lst{
+    /* column-gap: calc(10vw / 2); */
+    column-gap: 5vw;
+  }
+  .__task-chairs-lst > li > a > img{
+    width: 45vw;
+  }
+  /* kids chair */
+  .__kids-chairs-lst > li > a > img{
+    width: 30vw;
+  }
+  /* news */
+  .news-cont{
+    width: 75%;
+  }
+  .news-more{
+    width: 10%;
+  }
+}
 
+@media screen and (max-width: 870px){
+  .visual-cont h3 {
+    width: 36rem;
+    padding-bottom: 2rem;
+    font-size: 4rem;
+  }
+  .visual-cont em{
+    font-size: 5rem;
+  }
+  .button-go-youtube img {
+    width: 8rem;
+    height: 8rem;
+  }
+  .button-go-youtube i {
+    left: 6rem;
+  }
+  .swp-v__controller{
+    display: none;
+  }
+  .arti__cp--tit strong{
+    font-size: 3.4rem;
+  }
+  .tips{
+    flex-flow: column-reverse;
+  }
+  .tips > *{
+    width: 100%;
+  }
+  .tips__img{
+    height: 40rem;
+  }
+  .tips__txt h6{
+    padding-top: 2.2rem;
+  }
+  .footer__bottom{
+    flex-wrap: wrap;
+    height: auto;
+  }
+}
+@media screen and (max-width: 675px){
 }
