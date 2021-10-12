@@ -31,77 +31,60 @@ window.onload = function () {
     swp_v.autoplay.start();
   });
 
-  // depth2 event jQuery
+  // header fix
+  const header = document.querySelector('.header');
+  const visual = document.querySelector('.visual');
+  let scY;
+  let transform_y = 0;
 
-  // let depth2_timer;
+  document.addEventListener('scroll', ()=>{
+    scY = window.scrollY;
 
-  // let menu_lst = $('.nav__depth1').find('> li');
-  // let menu_depth2 = $('.nav__depth2');
-  
-  // function depth2Out() {
-  //   menu_depth2.stop().fadeOut();
-  // }
-  // for (let index in menu_lst){
-  //   menu_lst.eq(index).mouseenter(function(){
-  //     menu_depth2.eq(index).stop().fadeIn();
-  //   });
-  //   menu_lst.eq(index).mouseleave(function(){
-  //     depth2_timer = setTimeout(depth2Out, 20);
-  //   })
-  // }
-  // menu_depth2.mouseenter(function () {
-  //   clearTimeout(depth2_timer);
-  // });
-  // menu_depth2.mouseleave(function () {
-  //   clearTimeout(depth2_timer);
-  //   depth2Out();
-  // });
+    if(scY >= 300 && scY < 800){
+      header.classList.add('header-active');
+      // when it become position fix -> another contents are going up suddenly
+      visual.style.marginTop = '60px';
+      //transform y : -100% ~ 0%
+      transform_y = -160 + (scY/5) ;
+      header.style.transform = `translateY(${transform_y}%)`;
+    } else if(scY < 100){
+      header.classList.remove('header-active');
+      visual.style.marginTop = '0';
+      header.style.transform = `translateY(0px)`;
+    }
+  });
 
   // depth2 show and hide
   let menu_lst = document.querySelectorAll('.nav__depth1 > li'); 
   let depth2_lst = document.querySelectorAll('.nav__depth2');
-  let depth2_timer;
-  let depth2_out_timer;
-  
-  function depth2Out(obj){
-    // clearTimeout(depth2_timer);
-    obj.classList.add('--disappear');
-    // waiting when --disappear animation end
-    depth2_out_timer = setTimeout(()=>{
-      obj.style.display = 'none';
-      console.log(obj);
-    }, 600);
-  }
-  function depth2In(obj){
+  let fadeout_timer;
+
+  function fadeIn(obj){
+    clearTimeout(fadeout_timer);
     obj.classList.remove('--disappear');
     obj.style.display = 'block';
-    console.log(obj);
   }
-  
-  menu_lst.forEach((item, index)=>{
-    item.addEventListener('mouseenter', (e) =>{
-      e.stopPropagation();
-      depth2In(depth2_lst[index]);
-      clearTimeout(depth2_out_timer);
-      // depth2_timer = setTimeout(()=>{
-      //   depth2Out(depth2_lst[index]);
-      // }, 2000);3
-      console.log('enter')
+  function fadeOut(obj){
+    obj.classList.add('--disappear');
+    fadeout_timer = setTimeout(()=>{
+      obj.style.display = 'none';
+    }, 500);
+  }
+
+  menu_lst.forEach(function(item, index){
+    item.addEventListener('mouseenter', function(){
+      depth2_lst.forEach((item, index)=>{
+        item.style.display = 'none';
+      });
+      fadeIn(depth2_lst[index]);
     });
-    item.addEventListener('mouseleave', (e) =>{
-      e.stopPropagation();
-      // just start disappear
-      depth2Out(depth2_lst[index]);
-      console.log('leave')
-      // but when depth2 enter,
-      depth2_lst[index].addEventListener('mouseenter', ()=>{
-        clearTimeout(depth2_out_timer);
-        // clearTimeout(depth2_timer);
-        depth2In(depth2_lst[index]);
-        console.log('depth2');
+    item.addEventListener('mouseleave', function(){
+      fadeOut(depth2_lst[index]);
+      depth2_lst[index].addEventListener('mouseenter', function(){
+        clearTimeout(fadeout_timer);
+        fadeIn(this);
       });
     });
   });
-
 
 }
